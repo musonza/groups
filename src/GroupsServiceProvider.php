@@ -21,10 +21,10 @@ class GroupsServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->registerChat();
+        $this->registerGroups();
     }
 
-    private function registerChat()
+    private function registerGroups()
     {
         $this->app->bind('groups', function () {
             return $this->app->make('Musonza\Groups\Groups');
