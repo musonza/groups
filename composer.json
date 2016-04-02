@@ -1,0 +1,28 @@
+{
+    "name": "musonza/groups",
+    "description": "Laravel 5 groups package",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "groups",
+        "conversations"
+    ],
+    "authors": [
+        {
+            "name": "Tinashe Musonza",
+            "email": "tinashemusonza@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+          "musonza\\groups\\": "src/"
+        },
+        "classmap": [
+            "tests/GroupsTestCase.php"
+        ]
+    }
+}
