@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-          "musonza\\groups\\": "src/"
+          "Musonza\\Groups\\": "src/"
         },
         "classmap": [
             "tests/GroupsTestCase.php"
