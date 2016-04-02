@@ -1,6 +1,6 @@
 {
     "name": "musonza/groups",
-    "description": "Laravel 5 groups package",
+    "description": "Laravel 5 user groups package",
     "license": "MIT",
     "keywords": [
         "laravel",
