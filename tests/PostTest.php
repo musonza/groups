@@ -84,8 +84,6 @@ class PostTest extends GroupsTestCase
 
         $user = Musonza\Groups\Models\User::find(1);
 
-        dd($user->posts);
-
         $this->assertEquals(2, $user->posts->count());
     }
 

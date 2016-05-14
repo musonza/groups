@@ -1,0 +1,23 @@
+language: php
+
+php:
+  - 5.5
+  - 5.6
+
+before_install:
+  - composer self-update
+  - composer create-project laravel/laravel
+  - cd ./laravel
+  - composer config repositories.musonza vcs https://github.com/musonza/groups.git
+  - composer require musonza/groups dev-master
+  - composer update
+  - touch ./database/testing.sqlite
+  - cp ./vendor/musonza/groups/tests/config/database.php ./config/
+  - cp ./vendor/musonza/groups/tests/config/app.php ./config/
+  - cp ./vendor/musonza/groups/tests/config/.env ./
+  - export APP_ENV="testing"
+  - php artisan vendor:publish
+  - php artisan migrate --force
+  - cd ./vendor/musonza/groups
+
+script: "../../bin/phpunit"
