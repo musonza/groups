@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/musonza/groups.svg?branch=master)](https://travis-ci.org/musonza/groups)
+
 ## Groups 
 
 This package allows you to add user groups system to your Laravel 5 application
