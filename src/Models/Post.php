@@ -37,7 +37,7 @@ class Post extends Eloquent
      */
     public function make($data)
     {
-        ;dsd;eturn $this->create($data);
+        return $this->create($data);
     }
 
     /**
