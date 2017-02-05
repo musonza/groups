@@ -14,8 +14,8 @@ class CreateGroupRequestTable extends Migration
     {
         Schema::create('group_request', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->index();
-            $table->integer('group_id')->index();
+            $table->integer('user_id')->unsigned(); //fix of issue  #2
+            $table->integer('group_id')->unsigned();//fix of issue  #2
             $table->timestamps();
 
             $table->foreign('group_id')
