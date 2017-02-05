@@ -12,7 +12,7 @@ class CreateReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('group_reports', function (Blueprint $table) {
             $table->integer('user_id')->index();
             $table->integer('reportable_id')->unsigned();
             $table->string('reportable_type');
