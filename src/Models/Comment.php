@@ -10,6 +10,13 @@ class Comment extends Eloquent
 {
     use Likes;
     use Reporting;
+    
+     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'group_posts';
 
     protected $fillable = ['post_id', 'user_id', 'body'];
 
