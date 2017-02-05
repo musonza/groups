@@ -12,7 +12,7 @@ class CreateLikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('likes', function (Blueprint $table) {
+        Schema::create('group_likes', function (Blueprint $table) {
             $table->integer('user_id')->index();
             $table->integer('likeable_id')->unsigned();
             $table->string('likeable_type');
