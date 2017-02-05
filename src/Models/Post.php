@@ -10,6 +10,13 @@ class Post extends Eloquent
 {
     use Likes;
     use Reporting;
+    
+     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'group_posts';
 
     protected $fillable = ['title', 'user_id', 'body', 'type', 'extra_info'];
 
