@@ -1,13 +1,12 @@
 language: php
 
 php:
-  - 5.5
   - 5.6
 
 before_install:
   - composer self-update
-  - composer create-project laravel/laravel
-  - cd ./laravel
+  - composer create-project laravel/laravel laravel "5.2.*"
+  - cd laravel
   - composer config repositories.musonza vcs https://github.com/musonza/groups.git
   - composer require musonza/groups dev-master
   - composer update
