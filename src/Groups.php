@@ -18,11 +18,11 @@ class Groups
     }
 
     /**
-     * Returns User instance with group relation
+     * Returns User instance with group relation.
      *
-     * @param      integer  $userId
+     * @param int $userId
      *
-     * @return     User
+     * @return User
      */
     public function getUser($userId)
     {
@@ -30,12 +30,12 @@ class Groups
     }
 
     /**
-     * Creates a group
+     * Creates a group.
      *
-     * @param      integer  $user_id  owner of group
-     * @param      array  $data     group information
+     * @param int   $user_id owner of group
+     * @param array $data    group information
      *
-     * @return     Group
+     * @return Group
      */
     public function create($user_id, $data)
     {
@@ -43,11 +43,11 @@ class Groups
     }
 
     /**
-     * Returns a group
+     * Returns a group.
      *
-     * @param      integer  $groupId
+     * @param int $groupId
      *
-     * @return     Group
+     * @return Group
      */
     public function group($groupId)
     {
@@ -55,11 +55,11 @@ class Groups
     }
 
     /**
-     * Creates a post
+     * Creates a post.
      *
-     * @param      array  $data
+     * @param array $data
      *
-     * @return     Post
+     * @return Post
      */
     public function createPost($data)
     {
@@ -67,11 +67,11 @@ class Groups
     }
 
     /**
-     * Returns a post
+     * Returns a post.
      *
-     * @param      integer  $postId
+     * @param int $postId
      *
-     * @return     Post
+     * @return Post
      */
     public function post($postId)
     {
@@ -79,11 +79,11 @@ class Groups
     }
 
     /**
-     * Adds a comment
+     * Adds a comment.
      *
-     * @param      array  $comment
+     * @param array $comment
      *
-     * @return     Comment
+     * @return Comment
      */
     public function addComment($comment)
     {
@@ -91,11 +91,11 @@ class Groups
     }
 
     /**
-     * Returns a comment
+     * Returns a comment.
      *
-     * @param      integer  $commentId
+     * @param int $commentId
      *
-     * @return     Comment
+     * @return Comment
      */
     public function comment($commentId)
     {

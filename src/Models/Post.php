@@ -29,11 +29,11 @@ class Post extends Eloquent
     }
 
     /**
-     * Creates a post
+     * Creates a post.
      *
-     * @param      array  $data
+     * @param array $data
      *
-     * @return     Post
+     * @return Post
      */
     public function make($data)
     {
@@ -41,12 +41,12 @@ class Post extends Eloquent
     }
 
     /**
-     * Updates Post
+     * Updates Post.
      *
-     * @param      integer  $postId
-     * @param      array  $data
+     * @param int   $postId
+     * @param array $data
      *
-     * @return     Post
+     * @return Post
      */
     public function updatePost($postId, $data)
     {

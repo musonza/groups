@@ -49,8 +49,8 @@ class CommentsTest extends GroupsTestCase
         $this->addedComment->report($this->user->id);
 
         $this->seeInDatabase('reports', [
-            'user_id' => $this->user->id,
-            'reportable_id' => $this->addedComment->id,
+            'user_id'         => $this->user->id,
+            'reportable_id'   => $this->addedComment->id,
             'reportable_type' => get_class($this->addedComment),
         ]);
 

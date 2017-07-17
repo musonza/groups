@@ -29,7 +29,7 @@ trait Reporting
 
     public function isReported($user_id)
     {
-        return !!$this->reports()
+        return (bool) $this->reports()
             ->where('user_id', $user_id)
             ->count();
     }

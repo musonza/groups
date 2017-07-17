@@ -17,8 +17,8 @@ class LikesTest extends GroupsTestCase
         $this->post->like($this->user->id);
 
         $this->seeInDatabase('likes', [
-            'user_id' => $this->user->id,
-            'likeable_id' => $this->post->id,
+            'user_id'       => $this->user->id,
+            'likeable_id'   => $this->post->id,
             'likeable_type' => get_class($this->post),
         ]);
 
@@ -33,8 +33,8 @@ class LikesTest extends GroupsTestCase
         $this->post->unlike($this->user->id);
 
         $this->dontSeeInDatabase('likes', [
-            'user_id' => $this->user->id,
-            'likeable_id' => $this->post->id,
+            'user_id'       => $this->user->id,
+            'likeable_id'   => $this->post->id,
             'likeable_type' => get_class($this->post),
         ]);
 
@@ -67,8 +67,8 @@ class LikesTest extends GroupsTestCase
         $this->comment->like($this->user->id);
 
         $this->seeInDatabase('likes', [
-            'user_id' => $this->user->id,
-            'likeable_id' => $this->comment->id,
+            'user_id'       => $this->user->id,
+            'likeable_id'   => $this->comment->id,
             'likeable_type' => get_class($this->comment),
         ]);
 

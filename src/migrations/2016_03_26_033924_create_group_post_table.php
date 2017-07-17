@@ -13,7 +13,6 @@ class CreateGroupPostTable extends Migration
     public function up()
     {
         Schema::create('group_post', function (Blueprint $table) {
-
             $table->integer('group_id')->unsigned();
             $table->integer('post_id')->unsigned();
             $table->timestamps();
@@ -27,7 +26,6 @@ class CreateGroupPostTable extends Migration
                 ->references('id')
                 ->on('posts')
                 ->onDelete('cascade');
-
         });
     }
 
