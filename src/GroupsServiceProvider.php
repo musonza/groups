@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class GroupsServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -34,8 +33,7 @@ class GroupsServiceProvider extends ServiceProvider
     public function registerAssets()
     {
         $this->publishes([
-            __DIR__ . '/migrations' => database_path('/migrations'),
+            __DIR__.'/migrations' => database_path('/migrations'),
         ]);
-
     }
 }

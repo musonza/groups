@@ -34,12 +34,12 @@ class Group extends Eloquent
     }
 
     /**
-     * Creates a group
+     * Creates a group.
      *
-     * @param      integer  $user_id
-     * @param      array  $data
+     * @param int   $user_id
+     * @param array $data
      *
-     * @return     Group
+     * @return Group
      */
     public function make($user_id, $data)
     {
@@ -53,9 +53,9 @@ class Group extends Eloquent
     }
 
     /**
-     * Creates a group join request
+     * Creates a group join request.
      *
-     * @param      integer  $user_id
+     * @param int $user_id
      */
     public function request($user_id)
     {
@@ -70,11 +70,11 @@ class Group extends Eloquent
     }
 
     /**
-     * Accepts a group join request
+     * Accepts a group join request.
      *
-     * @param      integer  $user_id
+     * @param int $user_id
      *
-     * @return     Group
+     * @return Group
      */
     public function acceptRequest($user_id)
     {
@@ -86,11 +86,11 @@ class Group extends Eloquent
     }
 
     /**
-     * Decline a group join request
+     * Decline a group join request.
      *
-     * @param      integer  $user_id
+     * @param int $user_id
      *
-     * @return     Group
+     * @return Group
      */
     public function declineRequest($user_id)
     {
@@ -100,11 +100,11 @@ class Group extends Eloquent
     }
 
     /**
-     * Add members / join group
+     * Add members / join group.
      *
-     * @param      mixed  $members  integer user_id or an array of user ids
+     * @param mixed $members integer user_id or an array of user ids
      *
-     * @return     Group
+     * @return Group
      */
     public function addMembers($members)
     {
@@ -118,11 +118,11 @@ class Group extends Eloquent
     }
 
     /**
-     * Removes user from group
+     * Removes user from group.
      *
-     * @param      mixed  $members  this can be user_id or an array of user ids
+     * @param mixed $members this can be user_id or an array of user ids
      *
-     * @return     Group
+     * @return Group
      */
     public function leave($members)
     {
@@ -138,11 +138,11 @@ class Group extends Eloquent
     }
 
     /**
-     * Attach a post to a group
+     * Attach a post to a group.
      *
-     * @param      integer  $postId
+     * @param int $postId
      *
-     * @return     Group
+     * @return Group
      */
     public function attachPost($postId)
     {
@@ -161,5 +161,4 @@ class Group extends Eloquent
 
         return $this;
     }
-
 }

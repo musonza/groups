@@ -93,12 +93,11 @@ class PostTest extends GroupsTestCase
         $this->post->report($this->user->id);
 
         $this->seeInDatabase('reports', [
-            'user_id' => $this->user->id,
-            'reportable_id' => $this->post->id,
+            'user_id'         => $this->user->id,
+            'reportable_id'   => $this->post->id,
             'reportable_type' => get_class($this->post),
         ]);
 
         $this->assertTrue($this->post->isReported($this->user->id));
     }
-
 }

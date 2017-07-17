@@ -34,11 +34,11 @@ class Comment extends Eloquent
     }
 
     /**
-     * Adds a comment
+     * Adds a comment.
      *
-     * @param      array  $comment
+     * @param array $comment
      *
-     * @return     Comment
+     * @return Comment
      */
     public function add($comment)
     {

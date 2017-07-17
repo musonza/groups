@@ -44,5 +44,4 @@ abstract class GroupsTestCase extends TestCase
 
         return Groups::addComment($this->comment);
     }
-
 }
