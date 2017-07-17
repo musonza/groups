@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/musonza/groups.svg?branch=master)](https://travis-ci.org/musonza/groups)
 [![Downloads](https://img.shields.io/packagist/dt/musonza/groups.svg?style=flat-square)](https://packagist.org/packages/musonza/groups)
+[![StyleCI](https://styleci.io/repos/55277679/shield?branch=master)](https://styleci.io/repos/55277679)
 
 ## Groups 
 
