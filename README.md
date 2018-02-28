@@ -2,156 +2,231 @@
 [![Downloads](https://img.shields.io/packagist/dt/musonza/groups.svg?style=flat-square)](https://packagist.org/packages/musonza/groups)
 [![StyleCI](https://styleci.io/repos/55277679/shield?branch=master)](https://styleci.io/repos/55277679)
 
-## Groups 
+# Description
 
-This package allows you to add user groups system to your Laravel 5 application
+This package allows you to add user groups _(groups, comment, like ...)_ system to your Laravel 5 application.
 
-## Installation
+# Installation
 
-From the command line, run:
-
-```
+1. Via **Composer**, from the command line, run :
+```console
 composer require musonza/groups
 ```
 
-Add the service provider to your `config\app.php` the providers array
-
-```
-Musonza\Groups\GroupsServiceProvider
-```
-
-You can use the facade for shorter code. Add this to your aliases:
-
-```
-'Groups' => Musonza\Groups\Facades\GroupsFacade::class` to your `config\app.php
+2. Add the service provider to `./config/app.php` in `providers` array, like :
+```php
+    /*
+     * Package Service Providers...
+     */
+    Musonza\Groups\GroupsServiceProvider::class,
 ```
 
-The class is bound to the ioC as Groups
-
+3. You can use the facade for shorter code. 
+Add this to `./config/app.php` at the end of `aliases` array :
+> Note : is facultative.
+```php
+    'Groups' => Musonza\Groups\Facades\GroupsFacade::class,
 ```
+
+> Note : The class is bound to the ioC as Groups.
+```php
 $groups = App::make('Groups');
 ```
 
-Publish the assets:
-
-```
+4. From the command line, publish the assets:
+```console
 php artisan vendor:publish
 ```
 
-This will publish database migrations.
+> Note : This will publish database migrations in `./database/migrations/`.
+```php
+create_groups_table // main groups table
+    id
+    name
+    description
+    short_description
+    image
+    url
+    user_id
+    private
+    conversation_id
+    extra_info
+    settings
 
-#### Groups 
+create_group_user_table // main relation User is in Group table
+    id
+    user_id
+    group_id
 
-###### Create a group
+create_posts_table // users Posts table
+    id
+    title
+    body
+    type
+    user_id
+    extra_info
 
+create_comments_table // users post Comments table
+    id
+    body
+    user_id
+    post_id
+    type
+
+create_group_post_table // relation Group own Post table
+    group_id
+    post_id
+
+create_likes_table // users Likes on comment or post
+    user_id
+    likeable_id
+    likeable_type
+
+create_reports_table // Reporting post or comment
+    user_id
+    reportable_id
+    reportable_type
+
+create_group_request_table // Request group attachement
+    user_id
+    group_id
 ```
+
+5. Adapt, Add, Remove, migrations for your usage.
+
+6. Create migration, from the command line.
+> **one-by-one** :
+```console
+php artisan make:migration create_migration_name
+```
+> **or all** :
+```console
+php artisan migrate
+```
+
+# Usage
+
+## Groups 
+
+1. ##### Create a group
+
+```php
 $group = Groups::create($userId, $data);
 ```
-Accepted fields in $data array 
 
-```
+> Note : Accepted fields in $data array : 
+```php
 $data = [
-        'name',
-        'description', // optional
-        'short_description', // optional
-        'image',   // optional
-        'private', // 0 or 1
-        'extra_info', // optional
-        'settings', // optional
-        'conversation_id', // optional if you want to add messaging to your groups this can be useful
-    ];
+  'name'              => '',
+  'description'       => '', // optional
+  'short_description' => '', // optional
+  'image'             => '', // optional
+  'private'           => 0,  // 0 (public) or 1 (private)
+  'extra_info'        => '', // optional
+  'settings'          => '', // optional
+  'conversation_id'   => 0,  // optional if you want to add messaging to your groups this can be useful
+];
 ```
 
-###### Delete a group
-```
+2. ##### Delete a group
+```php
 $group->delete();
 ```
 
-###### Update a group
-```
+3. ##### Update a group
+```php
 $group->update($updateArray);
 ```
 
-###### Get user instance with group relations
-```
+4. ##### Get user instance with group relations
+```php
 $user = Groups::getUser($userId); 
 ```
 
-###### Add members to group
-```
+5. ##### Add members to group
+```php
 $group->addMembers([$userId, $userId2, ...]);
 ```
 
-###### Request to join a group
-```
+6. ##### Request to join a group
+```php
 $group->request($userId);
 ```
 
-###### Accept a group request
-```
+7. ##### Accept a group request
+```php
 $group->acceptRequest($userId);
 ```
 
-###### Decline a group request
-```
+8. ##### Decline a group request
+```php
 $group->declineRequest($userId);
 ```
 
-###### Group requests
-```
+9. ##### Group requests
+```php
 $requests = $group->requests;
 ```
 
-###### How many groups a user is member of
-```
+10. ##### How many groups a user is member of
+```php
 $user = Groups::getUser($userId); 
 $count = $user->groups->count();
 ```
 
-###### Remove member(s) from group
-```
+11. ##### Remove member(s) from group
+```php
 $group->leave([$userId, $userId2, ...]);
 ```
 
-#### Posts
+## Posts
 
-###### Create a post
-```
+1. ##### Create a post
+```php
 $post = Groups::createPost($data);
 ```
-Acceptable values for Post $data array
-```
-$data = ['title', 'user_id', 'body', 'type', 'extra_info'];
+> Note : Acceptable values for Post $data array
+```php
+$data = [
+  'title'      => '', 
+  'user_id'    => 0, 
+  'body'       => '', 
+  'type'       => '', 
+  'extra_info' => '',
+];
 ```
 
-###### Get post
-```
+2. ##### Get post
+```php
 $post = Groups::post($postId);
 ```
 
-###### Update a post
-```
+3. ##### Update a post
+```php
 $post->update($data);
 ```
-###### Delete a post
-```
+
+4. ##### Delete a post
+```php
 $post->delete();
 ```
-###### Add a post to a group
-```
+
+5. ##### Add a post to a group
+```php
 $group->attachPost($postId);
 ```
-###### Add multiple posts to a group
-```
+
+6. ##### Add multiple posts to a group
+```php
 $group->attachPost([$postId, $postId2, ...]);
 ```
-###### Remove post from a group
-```
+7. ##### Remove post from a group
+```php
 $group->detachPost($postId);
 ```
 
-###### Group posts
-```
+8. ##### Group posts
+```php
 $posts = $group->posts;
 
 $posts = $group->posts()->paginate(5);
@@ -160,90 +235,94 @@ $posts = $group->posts()->orderBy('id', 'DESC')->paginate(5);
 
 ```
 
-###### User posts
-```
+9. ##### User posts
+```php
 $user = Groups::getUser($userId);
 
 $posts = $user->posts;
 ```
-#### Comments
 
-Acceptable values for Comment $data array
-```
-$data = ['post_id', 'user_id', 'body'];
+
+## Comments
+
+> Note : Acceptable values for Comment $data array
+```php
+$data = [
+  'post_id' => 0,  
+  'user_id' => 0, 
+  'body'    => '',
+];
 ```
 
-###### Add comment
-```
+1. ##### Add comment
+```php
 $comment = Groups::addComment($data);
 ```
 
-###### Get comment
+2. ##### Get comment
 ```
 $comment = Groups::comment($commentId);
 ```
 
-###### Update a comment
-```
+3. ##### Update a comment
+```php
 $comment->update($data);
 ```
 
-###### Delete a comment
-```
+4. ##### Delete a comment
+```php
 $comment->delete();
 ```
 
-#### Reporting
 
-###### Report a comment or post
-```
+## Reporting
+
+1. ##### Report a comment or post
+```php
 $comment->report($userIdOfReporter);
 $post->report($userIdOfReporter);
 ```
 
-###### Remove a post or comment report
-```
+2. ##### Remove a post or comment report
+```php
 $post->removeReport($userId);
 $comment->removeReport($userId);
 ```
 
-###### Toggle report/unreport a post or comment
-```
+3. ##### Toggle report/unreport a post or comment
+```php
 $post->toggleReport($userId);
 $comment->toggleReport($userId);
 ```
 
-###### Post or Comment Report count
-```
+4. ##### Post or Comment Report count
+```php
 $commentReports = $comment->reportsCount;
 $postReports = $post->reportsCount;
 ```
 
-#### Likes
 
-###### Like a post or comment
-```
+## Likes
+
+1. ##### Like a post or comment
+```php
 $post->like($userId);
 $comment->like($userId);
 ```
-###### Unlike a post or comment
-```
+
+2. ##### Unlike a post or comment
+```php
 $post->unlike($userId);
 $comment->unlike($userId);
 ```
-###### Toggle like/unlike a post or comment
-```
+3. ##### Toggle like/unlike a post or comment
+```php
 $post->toggleLike($userId);
 $comment->toggleLike($userId);
 ```
 
-###### Post or Comment likes count
-```
+4. ##### Post or Comment likes count
+```php
 $postLikes = $post->likesCount;
 $commentLikes = $comment->likesCount;
 ```
-
-
-
-
-
