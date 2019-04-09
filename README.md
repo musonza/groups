@@ -46,7 +46,7 @@ composer require musonza/groups
 
 3. You can use the facade for shorter code. 
 Add this to `./config/app.php` at the end of `aliases` array :
-> Note : is facultative.
+
 ```php
     'Groups' => Musonza\Groups\Facades\GroupsFacade::class,
 ```
