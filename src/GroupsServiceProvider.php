@@ -38,8 +38,8 @@ class GroupsServiceProvider extends ServiceProvider
     public function publishMigrations()
     {
         $timestamp = date('Y_m_d_His', time());
-        $stub = __DIR__ . '/../database/migrations/create_groups_tables.php';
-        $target = $this->app->databasePath() . '/migrations/' . $timestamp . '_create_groups_tables.php';
+        $stub = __DIR__.'/../database/migrations/create_groups_tables.php';
+        $target = $this->app->databasePath().'/migrations/'.$timestamp.'_create_groups_tables.php';
         $this->publishes([$stub => $target], 'groups.migrations');
     }
 }
