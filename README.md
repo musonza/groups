@@ -2,6 +2,29 @@
 [![Downloads](https://img.shields.io/packagist/dt/musonza/groups.svg?style=flat-square)](https://packagist.org/packages/musonza/groups)
 [![StyleCI](https://styleci.io/repos/55277679/shield?branch=master)](https://styleci.io/repos/55277679)
 
+# Table of content
+
+- [Description](#description)
+- [Installation](#installation)
+    + Install with Composer
+    + Add service provider to App
+    + Add facade alias to App
+    + Publish vendor with Artisan
+    + Tables details
+    + Make migration with Artisan
+- [Usage](#usage)
+    + [Groups](#groups)
+        * Create, Delete, Update, Users list, Add member, Join request, Accept join, Decline join, Join request list
+    + [Posts](#posts)
+        * Create, Get, Update, Delete, Add to group, Group posts list, User posts list
+    + [Comments](#comments)
+        * Add, Get, Update, Delete
+    + [Reporting](#reporting)
+        * Report, Remove, Toggle , Count
+    + [Likes](#likes)
+        * Like, Unlike, Toggle, Count
+    
+
 # Description
 
 This package allows you to add user groups _(groups, comment, like ...)_ system to your Laravel 5 application.
@@ -23,7 +46,7 @@ composer require musonza/groups
 
 3. You can use the facade for shorter code. 
 Add this to `./config/app.php` at the end of `aliases` array :
-
+> Note : is facultative.
 ```php
     'Groups' => Musonza\Groups\Facades\GroupsFacade::class,
 ```
@@ -38,9 +61,20 @@ $groups = App::make('Groups');
 php artisan vendor:publish
 ```
 
-```console
-php artisan migrate
+> Note : This will publish database migrations in `./database/migrations/`.
 ```
+create_groups_table // main groups table
+    id
+    name
+    description
+    short_description
+    image
+    url
+    user_id
+    private
+    conversation_id
+    extra_info
+    settings
 
 # Usage
 
