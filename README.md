@@ -76,57 +76,6 @@ create_groups_table // main groups table
     extra_info
     settings
 
-create_group_user_table // main relation User is in Group table
-    id
-    user_id
-    group_id
-
-create_posts_table // users Posts table
-    id
-    title
-    body
-    type
-    user_id
-    extra_info
-
-create_comments_table // users post Comments table
-    id
-    body
-    user_id
-    post_id
-    type
-
-create_group_post_table // relation Group own Post table
-    group_id
-    post_id
-
-create_likes_table // users Likes on comment or post
-    user_id
-    likeable_id
-    likeable_type
-
-create_reports_table // Reporting post or comment
-    user_id
-    reportable_id
-    reportable_type
-
-create_group_request_table // Request group attachement
-    user_id
-    group_id
-```
-
-5. Adapt, Add, Remove, migrations for your usage.
-
-6. Create migration, from the command line.
-> **one-by-one** :
-```console
-php artisan make:migration create_migration_name
-```
-> **or all** :
-```console
-php artisan migrate
-```
-
 # Usage
 
 ## Groups 

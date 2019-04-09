@@ -2,7 +2,7 @@
 
 class PostTest extends GroupsTestCase
 {
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -18,7 +18,7 @@ class PostTest extends GroupsTestCase
     /** @test **/
     public function it_creates_a_post()
     {
-        $this->seeInDatabase('posts', ['id' => 1, 'title' => 'my title', 'body' => 'This is the body']);
+        $this->assertDatabaseHas('posts', ['id' => 1, 'title' => 'my title', 'body' => 'This is the body']);
     }
 
     /** @test **/
@@ -28,7 +28,7 @@ class PostTest extends GroupsTestCase
 
         $this->post->update($this->data);
 
-        $this->seeInDatabase('posts', ['id' => 1, 'title' => 'new title', 'body' => 'This is the body']);
+        $this->assertDatabaseHas('posts', ['id' => 1, 'title' => 'new title', 'body' => 'This is the body']);
     }
 
     /** @test **/
@@ -36,7 +36,7 @@ class PostTest extends GroupsTestCase
     {
         $this->post->delete();
 
-        $this->dontSeeInDatabase('posts', ['id' => 1, 'title' => 'my title', 'body' => 'This is the body']);
+        $this->assertDatabaseMissing('posts', ['id' => 1, 'title' => 'my title', 'body' => 'This is the body']);
     }
 
     /** @test */
@@ -52,7 +52,7 @@ class PostTest extends GroupsTestCase
     {
         $this->group->attachPost($this->post->id);
 
-        $this->seeInDatabase('group_post', ['post_id' => 1, 'group_id' => 1]);
+        $this->assertDatabaseHas('group_post', ['post_id' => 1, 'group_id' => 1]);
     }
 
     /** @test **/
@@ -60,7 +60,7 @@ class PostTest extends GroupsTestCase
     {
         $this->group->attachPost($this->post->id);
 
-        $this->seeInDatabase('group_post', ['post_id' => 1, 'group_id' => 1]);
+        $this->assertDatabaseHas('group_post', ['post_id' => 1, 'group_id' => 1]);
 
         $this->group->detachPost($this->post->id);
 
@@ -92,7 +92,7 @@ class PostTest extends GroupsTestCase
     {
         $this->post->report($this->user->id);
 
-        $this->seeInDatabase('reports', [
+        $this->assertDatabaseHas('reports', [
             'user_id'         => $this->user->id,
             'reportable_id'   => $this->post->id,
             'reportable_type' => get_class($this->post),
