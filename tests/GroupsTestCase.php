@@ -1,9 +1,9 @@
 <?php
 
-require __DIR__ . '/../database/migrations/create_groups_tables.php';
+require __DIR__.'/../database/migrations/create_groups_tables.php';
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Schema;
 
 abstract class GroupsTestCase extends \Orchestra\Testbench\TestCase
@@ -14,7 +14,7 @@ abstract class GroupsTestCase extends \Orchestra\Testbench\TestCase
     {
         parent::setUp();
         $this->artisan('migrate', ['--database' => 'testbench']);
-        $this->withFactories(__DIR__ . '/../database/factories');
+        $this->withFactories(__DIR__.'/../database/factories');
         $this->migrate();
     }
 
@@ -33,8 +33,9 @@ abstract class GroupsTestCase extends \Orchestra\Testbench\TestCase
     protected function migrate()
     {
         $this->migrateTestTables();
-        (new CreateGroupsTables)->up();
+        (new CreateGroupsTables())->up();
     }
+
     /**
      * Define environment setup.
      *
@@ -49,9 +50,9 @@ abstract class GroupsTestCase extends \Orchestra\Testbench\TestCase
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.default', 'testbench');
         $app['config']->set('database.connections.testbench', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
     }
 
@@ -62,6 +63,7 @@ abstract class GroupsTestCase extends \Orchestra\Testbench\TestCase
             \Musonza\Groups\GroupsServiceProvider::class,
         ];
     }
+
     protected function getPackageAliases($app)
     {
         return [
@@ -71,7 +73,7 @@ abstract class GroupsTestCase extends \Orchestra\Testbench\TestCase
 
     public function tearDown() : void
     {
-        (new CreateGroupsTables)->down();
+        (new CreateGroupsTables())->down();
         $this->rollbackTestTables();
         parent::tearDown();
     }

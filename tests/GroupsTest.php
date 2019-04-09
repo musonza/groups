@@ -16,7 +16,7 @@ class GroupsTest extends GroupsTestCase
     {
         Groups::create($this->user->id, $this->data);
 
-        $this-> assertDatabaseHas('groups', ['id' => 1]);
+        $this->assertDatabaseHas('groups', ['id' => 1]);
     }
 
     /** @test **/
@@ -26,11 +26,11 @@ class GroupsTest extends GroupsTestCase
 
         $group = Groups::create($user->id, $this->data);
 
-        $this-> assertDatabaseHas('groups', ['id' => 1]);
+        $this->assertDatabaseHas('groups', ['id' => 1]);
 
         $group->delete();
 
-        $this-> assertDatabaseMissing('groups', ['id' => 1]);
+        $this->assertDatabaseMissing('groups', ['id' => 1]);
     }
 
     /** @test **/
@@ -44,7 +44,7 @@ class GroupsTest extends GroupsTestCase
 
         $group->update($this->data);
 
-        $this-> assertDatabaseHas('groups', ['id' => 1, 'name' => 'Ipsum']);
+        $this->assertDatabaseHas('groups', ['id' => 1, 'name' => 'Ipsum']);
     }
 
     /** @test */
@@ -76,7 +76,7 @@ class GroupsTest extends GroupsTestCase
 
         $group->request($users[1]->id);
 
-        $this-> assertDatabaseHas('group_request', ['group_id' => $group->id, 'user_id' => $users[1]->id]);
+        $this->assertDatabaseHas('group_request', ['group_id' => $group->id, 'user_id' => $users[1]->id]);
     }
 
     /** @test **/
@@ -92,7 +92,7 @@ class GroupsTest extends GroupsTestCase
 
         $this->assertEquals(2, $group->fresh()->users->count());
 
-        $this-> assertDatabaseMissing('group_request', ['group_id' => $group->id, 'user_id' => $users[1]->id]);
+        $this->assertDatabaseMissing('group_request', ['group_id' => $group->id, 'user_id' => $users[1]->id]);
     }
 
     /** @test **/
@@ -106,7 +106,7 @@ class GroupsTest extends GroupsTestCase
 
         $group->declineRequest($users[1]->id);
 
-        $this-> assertDatabaseMissing('group_request', ['group_id' => $group->id, 'user_id' => $users[1]->id]);
+        $this->assertDatabaseMissing('group_request', ['group_id' => $group->id, 'user_id' => $users[1]->id]);
     }
 
     /** @test **/
