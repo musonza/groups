@@ -2,7 +2,7 @@
 
 class LikesTest extends GroupsTestCase
 {
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -16,7 +16,7 @@ class LikesTest extends GroupsTestCase
     {
         $this->post->like($this->user->id);
 
-        $this->seeInDatabase('likes', [
+        $this-> assertDatabaseHas('likes', [
             'user_id'       => $this->user->id,
             'likeable_id'   => $this->post->id,
             'likeable_type' => get_class($this->post),
@@ -32,7 +32,7 @@ class LikesTest extends GroupsTestCase
 
         $this->post->unlike($this->user->id);
 
-        $this->dontSeeInDatabase('likes', [
+        $this-> assertDatabaseMissing('likes', [
             'user_id'       => $this->user->id,
             'likeable_id'   => $this->post->id,
             'likeable_type' => get_class($this->post),
@@ -66,7 +66,7 @@ class LikesTest extends GroupsTestCase
     {
         $this->comment->like($this->user->id);
 
-        $this->seeInDatabase('likes', [
+        $this-> assertDatabaseHas('likes', [
             'user_id'       => $this->user->id,
             'likeable_id'   => $this->comment->id,
             'likeable_type' => get_class($this->comment),

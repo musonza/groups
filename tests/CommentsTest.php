@@ -2,7 +2,7 @@
 
 class CommentsTest extends GroupsTestCase
 {
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -12,7 +12,7 @@ class CommentsTest extends GroupsTestCase
     /** @test **/
     public function it_can_add_a_comment_to_a_post()
     {
-        $this->seeInDatabase('comments', $this->comment);
+        $this-> assertDatabaseHas('comments', $this->comment);
     }
 
     /** @test */
@@ -28,7 +28,7 @@ class CommentsTest extends GroupsTestCase
     {
         $this->addedComment->delete();
 
-        $this->dontSeeInDatabase('comments', $this->comment);
+        $this-> assertDatabaseMissing('comments', $this->comment);
     }
 
     /** @test **/
@@ -40,7 +40,7 @@ class CommentsTest extends GroupsTestCase
 
         $this->addedComment->update($newComment);
 
-        $this->seeInDatabase('comments', $newComment);
+        $this-> assertDatabaseHas('comments', $newComment);
     }
 
     /** @test **/
@@ -48,7 +48,7 @@ class CommentsTest extends GroupsTestCase
     {
         $this->addedComment->report($this->user->id);
 
-        $this->seeInDatabase('reports', [
+        $this-> assertDatabaseHas('reports', [
             'user_id'         => $this->user->id,
             'reportable_id'   => $this->addedComment->id,
             'reportable_type' => get_class($this->addedComment),
