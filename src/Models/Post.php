@@ -43,7 +43,7 @@ class Post extends Model
     /**
      * Updates Post.
      *
-     * @param int $postId
+     * @param int   $postId
      * @param array $data
      *
      * @return Post
