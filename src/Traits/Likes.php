@@ -10,12 +10,12 @@ trait Likes
     {
         $like = new Like(['user_id' => $user_id]);
 
-        $this->likes()->save($like);
+        return $this->likes()->save($like);
     }
 
     public function unlike($user_id)
     {
-        $this->likes()->where('user_id', $user_id)->delete();
+        return $this->likes()->where('user_id', $user_id)->delete();
     }
 
     public function toggleLike($user_id)

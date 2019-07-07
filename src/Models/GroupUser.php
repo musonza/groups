@@ -2,9 +2,9 @@
 
 namespace Musonza\Groups\Models;
 
-use Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-class GroupUser extends Eloquent
+class GroupUser extends Model
 {
     protected $table = 'group_user';
 

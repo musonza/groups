@@ -2,11 +2,11 @@
 
 namespace Musonza\Groups\Models;
 
-use Eloquent;
+use Illuminate\Database\Eloquent\Model;
 use Musonza\Groups\Traits\Likes;
 use Musonza\Groups\Traits\Reporting;
 
-class Post extends Eloquent
+class Post extends Model
 {
     use Likes;
     use Reporting;
@@ -43,7 +43,7 @@ class Post extends Eloquent
     /**
      * Updates Post.
      *
-     * @param int   $postId
+     * @param int $postId
      * @param array $data
      *
      * @return Post

@@ -2,17 +2,22 @@
 
 class PostTest extends GroupsTestCase
 {
+    /**
+     * @var array
+     */
+    public $postData;
+
     public function setUp() : void
     {
         parent::setUp();
 
         $this->user = $this->createUsers();
 
-        $this->data = ['user_id' => $this->user->id, 'title' => 'my title', 'body' => 'This is the body', 'type' => 'text'];
+        $this->postData = ['user_id' => $this->user->id, 'title' => 'my title', 'body' => 'This is the body', 'type' => 'text'];
 
         $this->group = $this->createGroup($this->user->id);
 
-        $this->post = Groups::createPost($this->data);
+        $this->post = Groups::createPost($this->postData);
     }
 
     /** @test **/
@@ -24,9 +29,9 @@ class PostTest extends GroupsTestCase
     /** @test **/
     public function it_updates_a_post()
     {
-        $this->data['title'] = 'new title';
+        $this->postData['title'] = 'new title';
 
-        $this->post->update($this->data);
+        $this->post->update($this->postData);
 
         $this->assertDatabaseHas('posts', ['id' => 1, 'title' => 'new title', 'body' => 'This is the body']);
     }
@@ -70,7 +75,7 @@ class PostTest extends GroupsTestCase
     /** @test **/
     public function it_can_attach_multiple_posts_to_a_group()
     {
-        $this->post2 = Groups::createPost($this->data);
+        $this->post2 = Groups::createPost($this->postData);
 
         $this->group->attachPost([$this->post->id, $this->post2->id]);
 
@@ -80,7 +85,7 @@ class PostTest extends GroupsTestCase
     /** @test **/
     public function it_can_count_user_posts()
     {
-        $this->post2 = Groups::createPost($this->data);
+        $this->post2 = Groups::createPost($this->postData);
 
         $user = Musonza\Groups\Models\User::find(1);
 

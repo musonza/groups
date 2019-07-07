@@ -3,12 +3,34 @@
 require __DIR__.'/../database/migrations/create_groups_tables.php';
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Schema;
+use Musonza\Groups\Facades\GroupsFacade;
+use Musonza\Groups\GroupsServiceProvider;
+use Musonza\Groups\Models\Comment;
+use Musonza\Groups\Models\Group;
+use Musonza\Groups\Models\Post;
+use Orchestra\Database\ConsoleServiceProvider;
+use Orchestra\Testbench\TestCase;
 
-abstract class GroupsTestCase extends \Orchestra\Testbench\TestCase
+abstract class GroupsTestCase extends TestCase
 {
     use DatabaseTransactions;
+
+    /**
+     * @var Comment
+     */
+    public $comment;
+    public $user;
+    /**
+     * @var Group
+     */
+    public $group;
+    /**
+     * @var Post
+     */
+    public $post;
 
     public function setUp() : void
     {
@@ -39,7 +61,7 @@ abstract class GroupsTestCase extends \Orchestra\Testbench\TestCase
     /**
      * Define environment setup.
      *
-     * @param \Illuminate\Foundation\Application $app
+     * @param Application $app
      *
      * @return void
      */
@@ -59,15 +81,15 @@ abstract class GroupsTestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [
-            \Orchestra\Database\ConsoleServiceProvider::class,
-            \Musonza\Groups\GroupsServiceProvider::class,
+            ConsoleServiceProvider::class,
+            GroupsServiceProvider::class,
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'Groups' => \Musonza\Groups\Facades\GroupsFacade::class,
+            'Groups' => GroupsFacade::class,
         ];
     }
 

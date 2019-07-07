@@ -1,7 +1,12 @@
 <?php
 
+use Musonza\Groups\Models\Comment;
+
 class CommentsTest extends GroupsTestCase
 {
+    /** @var Comment */
+    protected $addedComment;
+
     public function setUp() : void
     {
         parent::setUp();
