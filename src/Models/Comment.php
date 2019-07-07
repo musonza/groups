@@ -2,11 +2,11 @@
 
 namespace Musonza\Groups\Models;
 
-use Eloquent;
+use Illuminate\Database\Eloquent\Model;
 use Musonza\Groups\Traits\Likes;
 use Musonza\Groups\Traits\Reporting;
 
-class Comment extends Eloquent
+class Comment extends Model
 {
     use Likes;
     use Reporting;

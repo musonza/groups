@@ -10,12 +10,12 @@ trait Reporting
     {
         $report = new Report(['user_id' => $user_id]);
 
-        $this->reports()->save($report);
+        return $this->reports()->save($report);
     }
 
     public function removeReport($user_id)
     {
-        $this->reports()->where('user_id', $user_id)->delete();
+        return $this->reports()->where('user_id', $user_id)->delete();
     }
 
     public function toggleReport($user_id)

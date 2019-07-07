@@ -2,9 +2,9 @@
 
 namespace Musonza\Groups\Models;
 
-use Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-class GroupRequest extends Eloquent
+class GroupRequest extends Model
 {
     protected $table = 'group_request';
 

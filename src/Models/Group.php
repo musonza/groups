@@ -2,9 +2,9 @@
 
 namespace Musonza\Groups\Models;
 
-use Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-class Group extends Eloquent
+class Group extends Model
 {
     protected $fillable = [
         'name',
@@ -36,20 +36,16 @@ class Group extends Eloquent
     /**
      * Creates a group.
      *
-     * @param int   $user_id
+     * @param int   $userId
      * @param array $data
      *
      * @return Group
      */
-    public function make($user_id, $data)
+    public function make($userId, $data)
     {
-        $data['user_id'] = $user_id;
+        $data['user_id'] = $userId;
 
-        $group = $this->create($data);
-
-        $group->addMembers($user_id);
-
-        return $group;
+        return $this->create($data)->addMembers($userId);
     }
 
     /**

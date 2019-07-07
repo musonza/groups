@@ -2,9 +2,9 @@
 
 namespace Musonza\Groups\Models;
 
-use Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-class Like extends Eloquent
+class Like extends Model
 {
     protected $fillable = ['user_id'];
 }

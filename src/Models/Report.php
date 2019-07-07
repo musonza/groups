@@ -2,9 +2,9 @@
 
 namespace Musonza\Groups\Models;
 
-use Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-class Report extends Eloquent
+class Report extends Model
 {
     protected $fillable = ['user_id'];
 }

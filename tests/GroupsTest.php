@@ -2,19 +2,21 @@
 
 class GroupsTest extends GroupsTestCase
 {
+    public $groupData;
+
     public function setUp() : void
     {
         parent::setUp();
 
         $this->user = $this->createUsers();
 
-        $this->data = ['name' => 'Lorem'];
+        $this->groupData = ['name' => 'Lorem'];
     }
 
     /** @test **/
     public function it_creates_a_group()
     {
-        Groups::create($this->user->id, $this->data);
+        Groups::create($this->user->id, $this->groupData);
 
         $this->assertDatabaseHas('groups', ['id' => 1]);
     }
@@ -24,7 +26,7 @@ class GroupsTest extends GroupsTestCase
     {
         $user = $this->createUsers();
 
-        $group = Groups::create($user->id, $this->data);
+        $group = Groups::create($user->id, $this->groupData);
 
         $this->assertDatabaseHas('groups', ['id' => 1]);
 
@@ -38,11 +40,11 @@ class GroupsTest extends GroupsTestCase
     {
         $user = $this->createUsers();
 
-        $group = Groups::create($user->id, $this->data);
+        $group = Groups::create($user->id, $this->groupData);
 
-        $this->data['name'] = 'Ipsum';
+        $this->groupData['name'] = 'Ipsum';
 
-        $group->update($this->data);
+        $group->update($this->groupData);
 
         $this->assertDatabaseHas('groups', ['id' => 1, 'name' => 'Ipsum']);
     }
@@ -60,7 +62,7 @@ class GroupsTest extends GroupsTestCase
     {
         $users = $this->createUsers(4);
 
-        $group = Groups::create($users[0]->id, $this->data);
+        $group = Groups::create($users[0]->id, $this->groupData);
 
         $group->addMembers([$users[1]->id, $users[2]->id]);
 
@@ -70,7 +72,7 @@ class GroupsTest extends GroupsTestCase
     /** @test **/
     public function it_can_make_a_group_request()
     {
-        $group = Groups::create($this->user->id, $this->data);
+        $group = Groups::create($this->user->id, $this->groupData);
 
         $users = $this->createUsers(4);
 
@@ -82,7 +84,7 @@ class GroupsTest extends GroupsTestCase
     /** @test **/
     public function it_can_accept_a_group_request()
     {
-        $group = Groups::create($this->user->id, $this->data);
+        $group = Groups::create($this->user->id, $this->groupData);
 
         $users = $this->createUsers(4);
 
@@ -98,7 +100,7 @@ class GroupsTest extends GroupsTestCase
     /** @test **/
     public function it_can_decline_a_group_request()
     {
-        $group = Groups::create($this->user->id, $this->data);
+        $group = Groups::create($this->user->id, $this->groupData);
 
         $users = $this->createUsers(4);
 
@@ -114,8 +116,8 @@ class GroupsTest extends GroupsTestCase
     {
         $users = $this->createUsers(4);
 
-        $group = Groups::create($this->user->id, $this->data);
-        $group1 = Groups::create($this->user->id, $this->data);
+        $group = Groups::create($this->user->id, $this->groupData);
+        $group1 = Groups::create($this->user->id, $this->groupData);
 
         $group->request($users[1]->id);
         $group->acceptRequest($users[1]->id);
@@ -133,7 +135,7 @@ class GroupsTest extends GroupsTestCase
     {
         $users = $this->createUsers(4);
 
-        $group = Groups::create($users[0]->id, $this->data);
+        $group = Groups::create($users[0]->id, $this->groupData);
 
         $group->addMembers([$users[1]->id, $users[2]->id]);
 
