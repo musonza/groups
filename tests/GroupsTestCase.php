@@ -78,6 +78,7 @@ abstract class GroupsTestCase extends TestCase
         ]);
 
         $app['config']->set('musonza_groups.user_model', User::class);
+        $app['config']->set('musonza_groups.big_increments', true);
     }
 
     protected function getPackageProviders($app)
