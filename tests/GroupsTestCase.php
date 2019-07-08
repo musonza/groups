@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Schema;
 use Musonza\Groups\Facades\GroupsFacade;
 use Musonza\Groups\GroupsServiceProvider;
-use Musonza\Groups\Models\Comment;
 use Musonza\Groups\Models\Group;
 use Musonza\Groups\Models\Post;
 use Musonza\Groups\Models\User;
