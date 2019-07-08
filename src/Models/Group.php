@@ -3,6 +3,7 @@
 namespace Musonza\Groups\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Musonza\Groups\Groups;
 
 class Group extends Model
 {
@@ -20,7 +21,7 @@ class Group extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'group_user')->withTimestamps();
+        return $this->belongsToMany(Groups::userModel(), 'group_user')->withTimestamps();
     }
 
     public function posts()
@@ -68,15 +69,15 @@ class Group extends Model
     /**
      * Accepts a group join request.
      *
-     * @param int $user_id
+     * @param int $userId
      *
      * @return Group
      */
-    public function acceptRequest($user_id)
+    public function acceptRequest($userId)
     {
-        $this->addMembers($user_id);
+        $this->addMembers($userId);
 
-        $this->deleteRequest($user_id);
+        $this->deleteRequest($userId);
 
         return $this;
     }
@@ -84,13 +85,13 @@ class Group extends Model
     /**
      * Decline a group join request.
      *
-     * @param int $user_id
+     * @param int $userId
      *
      * @return Group
      */
-    public function declineRequest($user_id)
+    public function declineRequest($userId)
     {
-        $this->deleteRequest($user_id);
+        $this->deleteRequest($userId);
 
         return $this;
     }

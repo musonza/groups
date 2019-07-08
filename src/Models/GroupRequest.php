@@ -3,6 +3,7 @@
 namespace Musonza\Groups\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Musonza\Groups\Groups;
 
 class GroupRequest extends Model
 {
@@ -17,6 +18,6 @@ class GroupRequest extends Model
 
     public function sender()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Groups::userModel(), 'user_id');
     }
 }

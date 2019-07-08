@@ -9,12 +9,34 @@ use Musonza\Groups\Models\User;
 
 class Groups
 {
-    public function __construct(Comment $comment, Group $group, Post $post, User $user)
+    /**
+     * @var Comment
+     */
+    protected $comment;
+    /**
+     * @var Group
+     */
+    protected $group;
+    /**
+     * @var Post
+     */
+    protected $post;
+    /**
+     * @var User
+     */
+    protected $user;
+
+    public function __construct(Comment $comment, Group $group, Post $post)
     {
         $this->comment = $comment;
         $this->group = $group;
         $this->post = $post;
-        $this->user = $user;
+        $this->user = app(self::userModel());
+    }
+
+    public static function userModel()
+    {
+        return config('musonza_groups.user_model', User::class);
     }
 
     /**
@@ -32,14 +54,14 @@ class Groups
     /**
      * Creates a group.
      *
-     * @param int   $user_id owner of group
+     * @param int   $userId owner of group
      * @param array $data    group information
      *
      * @return Group
      */
-    public function create($user_id, $data)
+    public function create($userId, $data)
     {
-        return $this->group->make($user_id, $data);
+        return $this->group->make($userId, $data);
     }
 
     /**

@@ -14,7 +14,7 @@ use Musonza\Groups\User;
 |
  */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Musonza\Groups\Models\User::class, function (Faker $faker) {
     static $password;
 
     return [
