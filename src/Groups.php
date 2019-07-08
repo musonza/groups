@@ -55,7 +55,7 @@ class Groups
      * Creates a group.
      *
      * @param int   $userId owner of group
-     * @param array $data    group information
+     * @param array $data   group information
      *
      * @return Group
      */
