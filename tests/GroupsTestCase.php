@@ -8,9 +8,9 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Schema;
 use Musonza\Groups\Facades\GroupsFacade;
 use Musonza\Groups\GroupsServiceProvider;
-use Musonza\Groups\Models\Comment;
 use Musonza\Groups\Models\Group;
 use Musonza\Groups\Models\Post;
+use Musonza\Groups\Models\User;
 use Orchestra\Database\ConsoleServiceProvider;
 use Orchestra\Testbench\TestCase;
 
@@ -19,7 +19,7 @@ abstract class GroupsTestCase extends TestCase
     use DatabaseTransactions;
 
     /**
-     * @var Comment
+     * @var array
      */
     public $comment;
     public $user;
@@ -76,6 +76,8 @@ abstract class GroupsTestCase extends TestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
+
+        $app['config']->set('musonza_groups.user_model', User::class);
     }
 
     protected function getPackageProviders($app)
@@ -107,7 +109,7 @@ abstract class GroupsTestCase extends TestCase
 
     public function createUsers($count = 1)
     {
-        $users = factory('Musonza\Groups\User', $count)->create();
+        $users = factory('Musonza\Groups\Models\User', $count)->create();
 
         if ($count == 1) {
             return $users[0];
